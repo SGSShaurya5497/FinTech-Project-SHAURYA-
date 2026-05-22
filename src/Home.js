@@ -10,7 +10,6 @@ import {
 } from "@chakra-ui/react";
 import { keyframes } from "@emotion/react";
 
-// Subtle floating background orbs keyframes
 const floatOrb1 = keyframes`
   0% { transform: translate(0px, 0px) scale(1); }
   33% { transform: translate(40px, -60px) scale(1.1); }
@@ -44,7 +43,6 @@ function Profile() {
     }
   };
 
-  const textColor = useColorModeValue("white", "white");
   const secondaryTextColor = "#8B8FA8";
 
   return (
@@ -107,15 +105,19 @@ function Profile() {
           </Text>
         </Flex>
 
-        {/* Hero Headings */}
+        {/* Hero Heading — gradient via inline style */}
         <Text
           fontSize={{ base: "36px", md: "64px" }}
           fontWeight="bold"
           lineHeight="1.1"
           letterSpacing="-0.02em"
-          bgGradient="linear(to-r, #6C63FF, #00D4AA)"
-          bgClip="text"
           mb="24px"
+          style={{
+            background: "linear-gradient(to right, #6C63FF, #00D4AA)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
         >
           Your Money. Your Intelligence.
         </Text>
@@ -156,9 +158,7 @@ function Profile() {
             fontSize="md"
             textAlign="center"
             mb="20px"
-            _hover={{
-              borderColor: "#6C63FF",
-            }}
+            _hover={{ borderColor: "#6C63FF" }}
             _focus={{
               borderColor: "#6C63FF",
               boxShadow: "0 0 0 1px #6C63FF",
@@ -167,20 +167,22 @@ function Profile() {
           <Button
             onClick={handleSubmit}
             isLoading={isLoading}
-            bg="linear-gradient(135deg, #6C63FF, #8B5CF6)"
-            _hover={{
-              transform: "translateY(-2px)",
-              boxShadow: "0 6px 20px rgba(108, 99, 255, 0.4)",
-            }}
-            _active={{
-              bg: "linear-gradient(135deg, #6C63FF, #8B5CF6)",
-            }}
             color="white"
             borderRadius="10px"
             fontWeight="600"
             w="100%"
             h="54px"
             fontSize="md"
+            style={{
+              background: "linear-gradient(135deg, #6C63FF, #8B5CF6)",
+            }}
+            _hover={{
+              transform: "translateY(-2px)",
+              boxShadow: "0 6px 20px rgba(108, 99, 255, 0.4)",
+            }}
+            _active={{
+              opacity: 0.9,
+            }}
           >
             Get Started →
           </Button>
