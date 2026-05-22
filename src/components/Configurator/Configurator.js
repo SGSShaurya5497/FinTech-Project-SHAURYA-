@@ -54,7 +54,7 @@ export default function Configurator(props) {
           <DrawerHeader pt="24px" px="24px">
             <DrawerCloseButton />
             <Text fontSize="xl" fontWeight="bold" mt="16px">
-              SAHITYA SETTINGS ⚙️
+              SHAURYA SETTINGS ⚙️
             </Text>
             <Text fontSize="md" mb="16px">
               See your dashboard options.
@@ -129,9 +129,9 @@ export default function Configurator(props) {
                 <Text fontSize="md" fontWeight="600" mb="4px">
                   Dark/Light
                 </Text>
-                <Button onClick={toggleColorMode}>
-                  Toggle {colorMode === "light" ? "Dark" : "Light"}
-                </Button>
+                <Text fontSize="sm" color="#00D4AA" fontWeight="bold">
+                  Dark Mode Enforced 🌙
+                </Text>
               </Flex>
               <Separator />
             </Flex>

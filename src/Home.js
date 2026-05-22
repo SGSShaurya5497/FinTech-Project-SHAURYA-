@@ -1,199 +1,193 @@
-import React, {useState} from "react";
-// Chakra imports
-import { Separator } from "components/Separator/Separator";
+import React, { useState } from "react";
 import axios from "axios";
 import {
-  Avatar,
-  AvatarGroup,
   Box,
   Button,
   Flex,
-  Grid,
-  Icon,
-  Image,
   Input,
-  Link,
-  Switch,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-// Custom components
-import Card from "components/Card/Card";
-import CardBody from "components/Card/CardBody";
-import CardHeader from "components/Card/CardHeader";
-// Assets
-import avatar2 from "assets/img/avatars/avatar2.png";
-import avatar3 from "assets/img/avatars/avatar3.png";
-import avatar4 from "assets/img/avatars/avatar4.png";
-import avatar5 from "assets/img/avatars/avatar5.png";
-import avatar6 from "assets/img/avatars/avatar6.png";
-import ImageArchitect1 from "assets/img/ImageArchitect1.png";
-import ImageArchitect2 from "assets/img/ImageArchitect2.png";
-import ImageArchitect3 from "assets/img/ImageArchitect3.png";
-import ProfileBgImage from "assets/img/ProfileBackground.png";
-import {
-  FaCube,
-  FaFacebook,
-  FaInstagram,
-  FaPenFancy,
-  FaPlus,
-  FaTwitter,
-} from "react-icons/fa";
-import { IoDocumentsSharp } from "react-icons/io5";
+import { keyframes } from "@emotion/react";
+
+// Subtle floating background orbs keyframes
+const floatOrb1 = keyframes`
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(40px, -60px) scale(1.1); }
+  66% { transform: translate(-20px, 40px) scale(0.95); }
+  100% { transform: translate(0px, 0px) scale(1); }
+`;
+
+const floatOrb2 = keyframes`
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(-50px, 50px) scale(0.9); }
+  66% { transform: translate(40px, -40px) scale(1.15); }
+  100% { transform: translate(0px, 0px) scale(1); }
+`;
+
 function Profile() {
-  const [number, setNumber] = useState('');
+  const [number, setNumber] = useState("");
   const [isLoading, setLoading] = useState(false);
+
   const handleSubmit = async (e) => {
-        await axios.get("https://setuserver.herokuapp.com/consent/" + number).then(response => window.location.replace(response.data))
-  }
-  // Chakra color mode
-  const textColor = useColorModeValue("gray.700", "white");
-  const bgProfile = useColorModeValue(
-    "hsla(0,0%,100%,.8)",
-    "linear-gradient(112.83deg, rgba(255, 255, 255, 0.21) 0%, rgba(255, 255, 255, 0) 110.84%)"
-  );
-  const borderProfileColor = useColorModeValue(
-    "white",
-    "rgba(255, 255, 255, 0.31)"
-  );
-  const emailColor = useColorModeValue("gray.400", "gray.300");
+    if (!number) return;
+    setLoading(true);
+    try {
+      const response = await axios.get("https://setuserver.herokuapp.com/consent/" + number);
+      if (response.data) {
+        window.location.replace(response.data);
+      }
+    } catch (error) {
+      console.error("Error setting up consent request:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const textColor = useColorModeValue("white", "white");
+  const secondaryTextColor = "#8B8FA8";
 
   return (
-    <Flex direction="column">
+    <Flex
+      direction="column"
+      align="center"
+      justify="center"
+      minH="100vh"
+      bg="#0A0A0F"
+      position="relative"
+      overflow="hidden"
+      p="24px"
+    >
+      {/* Background Animated Orbs */}
       <Box
-        
-        
-        px="0px"
-        
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        align="center"
-      >
-        <Box
-          bgImage={ProfileBgImage}
-          w="98vw"
-          h="98vh"
-          margin="0px"
-          
-          
-          bgRepeat="no-repeat"
-          
-          display="flex"
-          justifyContent="center"
-        >
-          <Flex
-            
-            mx="1.5rem"
-            maxH="330px"
-            marginTop="50px"
-            w={{ sm: "90%", xl: "95%" }}
-            justifyContent={{ sm: "center", md: "space-between" }}
-            align="center"
-            backdropFilter="saturate(200%) blur(50px)"
-            position="absolute"
-            boxShadow="0px 2px 5.5px rgba(0, 0, 0, 0.02)"
-            border="2px solid"
-            borderColor={borderProfileColor}
-            bg={bgProfile}
-            p="24px"
-            borderRadius="20px"
-            transform={{
-              sm: "translateY(45%)",
-              md: "translateY(110%)",
-              lg: "translateY(160%)",
-            }}
-          >
-            <Flex
-              align="center"
-              mb={{ sm: "10px", md: "0px" }}
-              direction="column"
-              w={{ sm: "100%" }}
-              
-              textAlign={{ sm: "center", md: "start" }}
-            >
-              
-              <Flex direction="column" maxWidth="100%" my={{ sm: "14px" }}>
-                <Text
-                  fontSize="65px"
-                  color={textColor}
-                  fontWeight="bold"
-                  
-                >
-                  SAHITYA 💸
-                </Text>
-            
-                <Text as="sub" fontSize = "25px">
-                  Enter Your Mobile Number
-                </Text>
-                <Separator/>
-                <Text>
-                  <input
-                  type="text"
-                  id="number"
-                  name="number"
-                  value={number}
-                  onChange={(e) => setNumber(e.target.value)}
-                  >
+        position="absolute"
+        top="10%"
+        left="5%"
+        w={{ base: "250px", md: "450px" }}
+        h={{ base: "250px", md: "450px" }}
+        borderRadius="full"
+        bg="radial-gradient(circle, rgba(108,99,255,0.18) 0%, rgba(108,99,255,0) 70%)"
+        filter="blur(60px)"
+        animation={`${floatOrb1} 15s infinite ease-in-out`}
+        zIndex={0}
+      />
+      <Box
+        position="absolute"
+        bottom="10%"
+        right="5%"
+        w={{ base: "280px", md: "500px" }}
+        h={{ base: "280px", md: "500px" }}
+        borderRadius="full"
+        bg="radial-gradient(circle, rgba(0,212,170,0.15) 0%, rgba(0,212,170,0) 70%)"
+        filter="blur(65px)"
+        animation={`${floatOrb2} 18s infinite ease-in-out`}
+        zIndex={0}
+      />
 
-                  </input>
-              <button onClick={handleSubmit}>Next</button>
-              </Text>
-              </Flex>
-            </Flex>
-         
-          </Flex>
-        </Box>
-      </Box>
-      
-      
+      {/* Main Glassmorphism Container */}
+      <Flex
+        direction="column"
+        align="center"
+        justify="center"
+        maxW="800px"
+        w="100%"
+        backdropFilter="blur(20px) saturate(180%)"
+        bg="rgba(19, 19, 26, 0.65)"
+        border="1px solid rgba(255, 255, 255, 0.08)"
+        borderRadius="24px"
+        boxShadow="0 8px 32px 0 rgba(0, 0, 0, 0.37)"
+        p={{ base: "32px 24px", md: "64px 48px" }}
+        zIndex={1}
+        textAlign="center"
+      >
+        {/* Brand Logo */}
+        <Flex align="center" mb="32px">
+          <Text fontSize="2xl" fontWeight="bold" color="white" letterSpacing="-0.03em">
+            ⚡ SHAURYA
+          </Text>
+        </Flex>
+
+        {/* Hero Headings */}
+        <Text
+          fontSize={{ base: "36px", md: "64px" }}
+          fontWeight="bold"
+          lineHeight="1.1"
+          letterSpacing="-0.02em"
+          bgGradient="linear(to-r, #6C63FF, #00D4AA)"
+          bgClip="text"
+          mb="24px"
+        >
+          Your Money. Your Intelligence.
+        </Text>
+
+        <Text
+          fontSize={{ base: "md", md: "xl" }}
+          color={secondaryTextColor}
+          maxW="600px"
+          lineHeight="1.6"
+          mb="40px"
+        >
+          SHAURYA brings your entire financial life into one intelligent dashboard — powered by UPI data, Account Aggregator & AI credit scoring.
+        </Text>
+
+        {/* Input Panel */}
+        <Flex direction="column" w="100%" maxW="400px" align="center">
+          <Text
+            fontSize="sm"
+            color="white"
+            fontWeight="600"
+            mb="12px"
+            letterSpacing="0.05em"
+            textTransform="uppercase"
+          >
+            Enter Mobile Number
+          </Text>
+          <Input
+            type="tel"
+            placeholder="+91 XXXXX XXXXX"
+            value={number}
+            onChange={(e) => setNumber(e.target.value)}
+            size="lg"
+            bg="#1E1E2E"
+            border="1px solid rgba(108, 99, 255, 0.3)"
+            borderRadius="10px"
+            color="white"
+            h="54px"
+            fontSize="md"
+            textAlign="center"
+            mb="20px"
+            _hover={{
+              borderColor: "#6C63FF",
+            }}
+            _focus={{
+              borderColor: "#6C63FF",
+              boxShadow: "0 0 0 1px #6C63FF",
+            }}
+          />
+          <Button
+            onClick={handleSubmit}
+            isLoading={isLoading}
+            bg="linear-gradient(135deg, #6C63FF, #8B5CF6)"
+            _hover={{
+              transform: "translateY(-2px)",
+              boxShadow: "0 6px 20px rgba(108, 99, 255, 0.4)",
+            }}
+            _active={{
+              bg: "linear-gradient(135deg, #6C63FF, #8B5CF6)",
+            }}
+            color="white"
+            borderRadius="10px"
+            fontWeight="600"
+            w="100%"
+            h="54px"
+            fontSize="md"
+          >
+            Get Started →
+          </Button>
+        </Flex>
+      </Flex>
     </Flex>
   );
 }
 
 export default Profile;
-
-// const Home = () => {
-//   const [number, setNumber] = useState('');
-//   const [isLoading, setLoading] = useState(false);
-// const mystyle = {
-//   backgroundImage: 'url("https://images.unsplash.com/photo-1575516478880-7dfb1a114073?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80")',
-//   height: '100vh',
-//   backgroundRepeat: 'no-repeat',
-//   backgroundSize: 'cover',
-//   margin:'-8px',
-  
-// }
-// const extra = {
-//   background: 'rgba(0,0,o,0.5)',
-//   height: '100vh',
-// }
-//   const handleSubmit = async (e) => {
-//     await axios.get("https://setuserver.herokuapp.com/consent/" + number, {mode: 'no-cors'}).then(response => window.location.replace(response.data))
-    
-//   }
-
-//   return (
-//     <>
-//           <div style={mystyle} className='form-control'>
-//             <div style={extra}>
-//             <label htmlFor='number'>Enter your phone number : </label>
-//             <input
-//               type='number'
-//               id='number'
-//               name='number'
-          
-//               value={number}
-//               onChange={(e) => setNumber(e.target.value)}
-//             />
-//           <button onClick={handleSubmit} >add person</button>
-//           </div>
-//           </div>
-        
-//           </>  
-     
-   
-//   );
-// };
-
-// export default Home;

@@ -25,41 +25,16 @@ export default function AdminNavbar(props) {
   } = props;
 
   // Here are all the props that may change depending on navbar's type or state.(secondary, variant, scrolled)
-  let mainText = useColorModeValue("gray.700", "gray.200");
-  let secondaryText = useColorModeValue("gray.400", "gray.200");
-  let navbarPosition = "absolute";
+  let mainText = "white";
+  let secondaryText = "#8B8FA8";
+  let navbarPosition = "fixed";
   let navbarFilter = "none";
-  let navbarBackdrop = "blur(21px)";
-  let navbarShadow = "none";
-  let navbarBg = "none";
-  let navbarBorder = "transparent";
+  let navbarBackdrop = "blur(20px)";
+  let navbarShadow = "0px 4px 30px rgba(0, 0, 0, 0.2)";
+  let navbarBg = "rgba(10, 10, 15, 0.8)";
+  let navbarBorder = "rgba(255, 255, 255, 0.06)";
   let secondaryMargin = "0px";
   let paddingX = "15px";
-  if (props.fixed === true)
-    if (scrolled === true) {
-      navbarPosition = "fixed";
-      navbarShadow = useColorModeValue(
-        "0px 7px 23px rgba(0, 0, 0, 0.05)",
-        "none"
-      );
-      navbarBg = useColorModeValue(
-        "linear-gradient(112.83deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.8) 110.84%)",
-        "linear-gradient(112.83deg, rgba(255, 255, 255, 0.21) 0%, rgba(255, 255, 255, 0) 110.84%)"
-      );
-      navbarBorder = useColorModeValue("#FFFFFF", "rgba(255, 255, 255, 0.31)");
-      navbarFilter = useColorModeValue(
-        "none",
-        "drop-shadow(0px 7px 23px rgba(0, 0, 0, 0.05))"
-      );
-    }
-  if (props.secondary) {
-    navbarBackdrop = "none";
-    navbarPosition = "absolute";
-    mainText = "white";
-    secondaryText = "white";
-    secondaryMargin = "22px";
-    paddingX = "30px";
-  }
   const changeNavbar = () => {
     if (window.scrollY > 1) {
       setScrolled(true);

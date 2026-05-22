@@ -12,25 +12,10 @@ export const barChartOptions = {
     },
   },
   tooltip: {
+    theme: "dark",
     style: {
-      backgroundColor: "red",
       fontSize: "12px",
-      fontFamily: undefined,
-    },
-    onDatasetHover: {
-      style: {
-        backgroundColor: "red",
-        fontSize: "12px",
-        fontFamily: undefined,
-      },
-    },
-    theme: {
-      monochrome: {
-        enabled: true,
-        color: '#7BCBD4',
-        shadeTo: 'dark',
-        shadeIntensity: 0.65
-      }
+      fontFamily: "Inter, sans-serif",
     },
   },
   xaxis: {
@@ -62,17 +47,19 @@ export const barChartOptions = {
     },
   },
   grid: {
-    show: false,
+    borderColor: "rgba(255, 255, 255, 0.05)",
+    strokeDashArray: 5,
   },
+  colors: ["#6C63FF", "#00D4AA"],
   fill: {
-    colors: "#fff",
+    colors: ["#6C63FF", "#00D4AA"],
   },
   dataLabels: {
     enabled: false,
   },
   plotOptions: {
     bar: {
-      borderRadius: 2,
+      borderRadius: 4,
       columnWidth: "40px",
     },
   },
@@ -82,7 +69,7 @@ export const barChartOptions = {
       options: {
         plotOptions: {
           bar: {
-            borderRadius: 0,
+            borderRadius: 2,
           },
         },
       },
@@ -115,19 +102,17 @@ export const lineChartOptions = {
   },
   stroke: {
     curve: "smooth",
+    width: 3,
   },
   xaxis: {
     type: "datetime",
     categories: [
-     
       "Apr",
       "May",
       "Jun",
       "Jul",
       "Aug",
       "Sep",
-      "Oct",
-      
     ],
     labels: {
       style: {
@@ -145,24 +130,29 @@ export const lineChartOptions = {
     },
   },
   legend: {
-    show: false,
+    show: true,
+    position: "top",
+    horizontalAlign: "right",
+    labels: {
+      colors: "#c8cfca",
+    },
   },
   grid: {
+    borderColor: "rgba(255, 255, 255, 0.05)",
     strokeDashArray: 5,
   },
   fill: {
     type: "gradient",
     gradient: {
-      shade: "light",
+      shade: "dark",
       type: "vertical",
       shadeIntensity: 0.5,
-      gradientToColors: undefined, // optional, if not defined - uses the shades of same color in series
       inverseColors: true,
       opacityFrom: 0.8,
-      opacityTo: 0,
-      stops: [],
+      opacityTo: 0.1,
+      stops: [0, 100],
     },
-    colors: ["#4FD1C5", "#2D3748"],
+    colors: ["#6C63FF", "#00D4AA"],
   },
-  colors: ["#4FD1C5", "#2D3748"],
+  colors: ["#6C63FF", "#00D4AA"],
 };

@@ -12,9 +12,58 @@ import { CardHeaderComponent } from "./additions/card/CardHeader";
 import { MainPanelComponent } from "./additions/layout/MainPanel";
 import { PanelContentComponent } from "./additions/layout/PanelContent";
 import { PanelContainerComponent } from "./additions/layout/PanelContainer";
-// import { mode } from "@chakra-ui/theme-tools";
+
+const config = {
+  initialColorMode: "dark",
+  useSystemColorMode: false,
+};
+
+const colors = {
+  brand: {
+    primary: "#6C63FF",
+    accent: "#00D4AA",
+    bg: "#0A0A0F",
+    surface: "#13131A",
+    textPrimary: "#FFFFFF",
+    textSecondary: "#8B8FA8",
+    danger: "#FF4D6D",
+  },
+  teal: {
+    300: "#00D4AA", // fintech green (accent)
+    400: "#6C63FF", // electric indigo (primary)
+  },
+};
+
+const components = {
+  Input: {
+    variants: {
+      outline: {
+        field: {
+          bg: "#1E1E2E",
+          border: "1px solid rgba(108, 99, 255, 0.3)",
+          borderRadius: "10px",
+          color: "white",
+          _placeholder: {
+            color: "#8B8FA8",
+          },
+          _hover: {
+            borderColor: "#6C63FF",
+          },
+          _focus: {
+            borderColor: "#6C63FF",
+            boxShadow: "0 0 0 1px #6C63FF",
+          },
+        },
+      },
+    },
+    defaultProps: {
+      variant: "outline",
+    },
+  },
+};
+
 export default extendTheme(
-  { breakpoints }, // Breakpoints
+  { config, colors, components, breakpoints }, // Config, Colors, Components, Breakpoints
   globalStyles,
   font, // Global styles
   buttonStyles, // Button styles

@@ -1,6 +1,7 @@
 {
-  "name": "sahitya",
-  "version": "1.0.1",
+  "name": "shaurya",
+  "version": "1.0.0",
+  "description": "AI-powered financial intelligence platform for India",
   "private": true,
   "dependencies": {
     "@chakra-ui/icons": "^1.0.14",
