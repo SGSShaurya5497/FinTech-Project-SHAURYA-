@@ -29,19 +29,14 @@ function Profile() {
   const [isLoading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    if (!number) return;
-    setLoading(true);
-    try {
-      const response = await axios.get("https://setuserver.herokuapp.com/consent/" + number);
-      if (response.data) {
-        window.location.replace(response.data);
-      }
-    } catch (error) {
-      console.error("Error setting up consent request:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  if (!number) return;
+  setLoading(true);
+  // Backend server deprecated - redirect directly to dashboard
+  setTimeout(() => {
+    window.location.replace("/#/admin/dashboard");
+    setLoading(false);
+  }, 800);
+};
 
   const secondaryTextColor = "#8B8FA8";
 
