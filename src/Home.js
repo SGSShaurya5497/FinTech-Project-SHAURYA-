@@ -31,7 +31,6 @@ function Profile() {
   const handleSubmit = async (e) => {
   if (!number) return;
   setLoading(true);
-  // Backend server deprecated - redirect directly to dashboard
   setTimeout(() => {
     window.location.replace("/#/admin/dashboard");
     setLoading(false);
