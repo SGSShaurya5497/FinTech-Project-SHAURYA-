@@ -1,75 +1,64 @@
-<div align="center">
-
 # ⚡ SHAURYA
+
 ### Your Financial Intelligence, Simplified.
 
-![Version](https://img.shields.io/badge/version-1.0.0-6C63FF?style=for-the-badge)
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+[![Version](https://img.shields.io/badge/version-1.0.0-6C63FF?style=for-the-badge)]()
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)]()
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)]()
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)]()
 
 **Built for India's Fintech Revolution 🇮🇳**
 
-[🚀 Live Demo](https://your-vercel-link.vercel.app) · [📹 Demo Video](#)
-
-</div>
+[🚀 Live Demo](https://fin-tech-project-shaurya.vercel.app)
 
 ---
 
-## 🧩 The Problem
+## The Problem
 
-Over **190 million Indians** remain unbanked or underserved by traditional financial institutions. Conventional credit scoring relies exclusively on formal credit history — leaving out gig workers, students, and first-time borrowers who have **real financial activity but no credit score**.
+Over **190 million Indians** remain unbanked or underserved by traditional financial institutions. Conventional credit scoring relies almost entirely on formal credit history, which leaves out gig workers, students, and first-time borrowers who have real financial activity but no credit score.
 
-At the same time, financial literacy in India is critically low. People don't know where their money is, how it's growing, or how to borrow smartly.
+Financial literacy is also low. People often don't have a clear picture of where their money is, how it's growing, or how to borrow sensibly.
 
----
+## The Idea
 
-## 💡 The Solution
+SHAURYA explores what a unified financial intelligence platform for this group could look like:
 
-SHAURYA is a unified financial intelligence platform that:
+- An alternate credit score generated from UPI transaction patterns and behavioral signals, instead of relying on formal credit history
+- A single net worth dashboard pulling together banks, mutual funds, equities, and ETFs
+- Short, card-based financial literacy modules
+- A P2P lending marketplace concept, with EMI calculations adapted to the alternate credit score
 
-- Pulls financial data via the **Account Aggregator framework** (user consent-first)
-- Generates **alternate credit scores** from UPI transaction history, asset data & behavioral signals
-- Provides a **real-time net worth dashboard** across banks, MFs, equities & ETFs
-- Educates users through **personalized financial literacy modules**
-- Connects borrowers & lenders via a **P2P lending marketplace**
+This is a concept build, not a production fintech product. The frontend is built and deployed; the credit scoring model is a working prototype trained on sample data, not live bank or UPI feeds.
 
-> One app. Your entire financial life.
+## What's Actually Working
 
----
+- React + Chakra UI dashboard, deployed and live at the link above
+- Dark-themed data visualizations (ApexCharts / Recharts) for net worth and spending breakdowns
+- A Python ML model that takes transaction-style features and outputs an alternate credit score, validated on sample/synthetic data
+- Static financial literacy modules and a mock P2P lending UI
 
-## ✨ Features
+## What's Not Built Yet
 
-| Feature | Description |
-|---|---|
-| 🎯 Alternate Credit Score | ML model scoring from UPI + asset data — no CIBIL needed |
-| 💰 Net Worth Dashboard | Unified view of banks, mutual funds, equities, ETFs |
-| 📚 SHAURYA Academy | Interactive card-based financial literacy modules |
-| 🤝 P2P Lending Marketplace | Borrow/lend with credit-score-adapted EMI calculator |
-| 🔐 Consent-first Architecture | Account Aggregator framework — user owns their data |
-| 📊 UPI Analytics | Spending patterns, category breakdown, trend analysis |
+- No real Account Aggregator integration — the consent-based bank data pull is a planned feature, not implemented
+- No live UPI data source; the credit model runs on prepared sample data, not PhonePe Pulse or real user transactions
+- No real money movement — the P2P lending marketplace is a UI concept, not a functioning settlement system
+- Not SEBI-compliant and not intended for real investment advice
 
----
-
-## 🛠️ Tech Stack
+## Tech Stack
 
 **Frontend**
 - React.js + Chakra UI
-- ApexCharts / Recharts (dark-themed data visualization)
-- CSS animations + Glassmorphism
+- ApexCharts / Recharts for data visualization
+- CSS animations, glassmorphism styling
 
 **Backend / ML**
-- Python — Alternate Credit Score ML Model
-- Account Aggregator API (consent layer)
-- PhonePe Pulse open data
+- Python — alternate credit score model
 
 **Infrastructure**
 - Vercel (frontend hosting)
 - GitHub Actions (CI)
 
----
-
-## 🚀 Run Locally
+## Run Locally
 
 ```bash
 # Clone the repo
@@ -83,9 +72,7 @@ yarn install
 yarn start
 ```
 
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 shaurya/
@@ -95,7 +82,7 @@ shaurya/
 │   ├── views/
 │   │   ├── Dashboard/    # Main dashboard, charts, stat cards
 │   │   ├── Dashboard/Tables.js   # Financial Literacy Academy
-│   │   └── Dashboard/Billing.js  # P2P Lending marketplace
+│   │   └── Dashboard/Billing.js  # P2P Lending marketplace (mock)
 │   ├── theme/            # Global dark theme, colors, typography
 │   ├── variables/        # Chart configs, mock data
 │   └── Home.js           # Landing page
@@ -103,25 +90,22 @@ shaurya/
 └── package.json
 ```
 
----
+## Roadmap
 
-## 🔮 Roadmap
+If this moved beyond a concept build, the next real steps would be:
 
-- [ ] Production AA framework integration (live bank data)
-- [ ] Deploy ML credit model as FastAPI microservice
-- [ ] Real P2P transaction settlements via UPI deep links
-- [ ] Mobile app (React Native)
-- [ ] SEBI-compliant investment recommendations
+- [ ] Integrate Account Aggregator framework for live, consent-based bank data
+- [ ] Replace sample data with real UPI transaction history for the credit model
+- [ ] Deploy the credit model as a FastAPI microservice instead of a local script
+- [ ] Real settlement flow for P2P lending via UPI deep links
+- [ ] SEBI-compliance review before any investment-facing features
 
----
-
-## 👨‍💻 Built By
+## Built By
 
 **Shaurya** — DTU Mathematics & Computing
+
 > *"Financial freedom shouldn't require a credit history."*
 
 ---
 
-<div align="center">
-Built with ❤️ for Bharat &nbsp;|&nbsp; SHAURYA © 2025
-</div>
+Built with ❤️ for Bharat
